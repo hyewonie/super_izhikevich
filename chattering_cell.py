@@ -10,8 +10,11 @@ import izhikevich_cells as izh
 
 class CCell(izh.izhCell):
     def __init__(self, stimVal):
+        """
+        Has different variable values
+        """
         super().__init__(stimVal)
-        self.celltype = 'Chattering ' # Regular spiking
+        self.celltype = 'Chattering' 
         self.C=50
         self.vr=-60
         self.vt=-40
@@ -22,9 +25,17 @@ class CCell(izh.izhCell):
         self.d=150
         self.vpeak=25
         
+    def createCell():
+        """
+        overrides the izh function and creates CCell instead of izhikevich cell
+        """
+        myCell = CCell(stimVal=200)        
+        myCell.simulate()
+        izh.plotMyData(myCell)
         
-myCell = CCell(4000)
-myCell.simulate()
+        
+#myCell = CCell(4000)
+#myCell.simulate()
 
 if __name__=='__main__':
-    izh.plotMyData(myCell)
+    CCell.createCell()
